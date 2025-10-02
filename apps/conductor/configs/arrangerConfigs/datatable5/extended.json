@@ -1,6 +1,10 @@
 {
   "extended": [
     {
+      "displayName": "Order ID",
+      "fieldName": "data.Order_ID"
+    },
+    {
       "displayName": "Region",
       "fieldName": "data.Region"
     },
@@ -23,10 +27,6 @@
     {
       "displayName": "Order Date",
       "fieldName": "data.Order_Date"
-    },
-    {
-      "displayName": "Order ID",
-      "fieldName": "data.Order_ID"
     },
     {
       "displayName": "Ship Date",

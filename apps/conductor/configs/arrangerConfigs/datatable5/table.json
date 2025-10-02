@@ -3,6 +3,14 @@
     "columns": [
       {
         "canChangeShow": true,
+        "fieldName": "data.Order_ID",
+        "show": true,
+        "sortable": true,
+        "jsonPath": "$.data.Order_ID",
+        "query": "data { Order_ID }"
+      },
+      {
+        "canChangeShow": true,
         "fieldName": "data.Region",
         "show": true,
         "sortable": true,
@@ -48,14 +56,6 @@
         "sortable": true,
         "jsonPath": "$.data.Order_Date",
         "query": "data { Order_Date }"
-      },
-      {
-        "canChangeShow": true,
-        "fieldName": "data.Order_ID",
-        "show": true,
-        "sortable": true,
-        "jsonPath": "$.data.Order_ID",
-        "query": "data { Order_ID }"
       },
       {
         "canChangeShow": true,

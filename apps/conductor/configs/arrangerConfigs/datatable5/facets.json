@@ -3,6 +3,13 @@
     "aggregations": [
       {
         "active": true,
+        "fieldName": "data__Order_ID",
+        "show": true,
+        "type": "keyword",
+        "aggregation": "terms"
+      },
+      {
+        "active": true,
         "fieldName": "data__Region",
         "show": true
       },
@@ -14,7 +21,9 @@
       {
         "active": true,
         "fieldName": "data__Item_Type",
-        "show": true
+        "show": true,
+        "type": "keyword",
+        "aggregation": "terms"
       },
       {
         "active": true,
@@ -29,11 +38,6 @@
       {
         "active": true,
         "fieldName": "data__Order_Date",
-        "show": true
-      },
-      {
-        "active": true,
-        "fieldName": "data__Order_ID",
         "show": true
       },
       {
