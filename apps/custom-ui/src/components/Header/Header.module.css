@@ -1,6 +1,6 @@
 .header {
-	background: #ffffff; /* grayscale.100 - white */
-	box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
+	background: #ffffff;
+	/* grayscale.100 - white */
 	height: 5.625rem;
 	position: relative;
 }
@@ -15,4 +15,3 @@
 	height: 64px;
 	width: auto;
 }
-
