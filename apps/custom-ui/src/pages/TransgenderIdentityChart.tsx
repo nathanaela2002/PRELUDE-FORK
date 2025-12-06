@@ -1,12 +1,22 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import { BarChart, ChartsProvider, ChartsThemeProvider } from '@overture-stack/arranger-charts';
-import { ReactElement } from 'react';
+import { useArrangerData } from '@overture-stack/arranger-components';
+import { ReactElement, useMemo } from 'react';
 import { CustomUIThemeInterface } from '../theme';
 import ErrorBoundary from '../components/ErrorBoundary';
+import { chartFilter } from '../utils/sqonHelpers';
+import { shuffleArray } from '../utils/chartUtils';
 
 const TransgenderIdentityChart = (): ReactElement => {
     const theme = useTheme() as CustomUIThemeInterface;
+    const { sqon, setSQON } = useArrangerData({ callerName: 'TransgenderIdentityChart' });
+
+    const chartFilters = useMemo(() => ({
+        transgenderIdentity: chartFilter('data__transgenderIdentity', sqon, setSQON),
+    }), [sqon, setSQON]);
+
+    const shuffledPalette = useMemo(() => shuffleArray(theme.colors.chartPalette), []);
 
     return (
         <div
@@ -33,10 +43,15 @@ const TransgenderIdentityChart = (): ReactElement => {
             <div style={{ height: '180px' }}>
                 <ErrorBoundary>
                     <ChartsProvider debugMode={false} loadingDelay={0}>
-                        <ChartsThemeProvider>
+                        <ChartsThemeProvider colors={shuffledPalette}>
                             <BarChart
                                 fieldName="data__transgenderIdentity"
                                 maxBars={15}
+                                handlers={{
+                                    onClick: (config) => {
+                                        return chartFilters.transgenderIdentity(config.data.key);
+                                    },
+                                }}
                                 theme={{
                                     axisLeft: {
                                         legend: 'Identity',

@@ -23,14 +23,16 @@
 import { css, useTheme } from '@emotion/react';
 import { BarChart, ChartsProvider, ChartsThemeProvider } from '@overture-stack/arranger-charts';
 import { useArrangerData } from '@overture-stack/arranger-components';
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState, useMemo } from 'react';
 import { CustomUIThemeInterface } from '../theme';
 import ErrorBoundary from '../components/ErrorBoundary';
 import createArrangerFetcher from '../utils/arrangerFetcher';
 import CustomBarTooltip from '../components/CustomBarTooltip';
+import { chartFilter } from '../utils/sqonHelpers';
+import { shuffleArray } from '../utils/chartUtils';
 
 const arrangerFetcher = createArrangerFetcher({
-	ARRANGER_API: 'http://localhost:5053',
+    ARRANGER_API: 'http://localhost:5053',
 });
 
 const ancestryTotalQuery = `
@@ -49,9 +51,15 @@ const ancestryTotalQuery = `
 
 const AncestryChart = (): ReactElement => {
     const theme = useTheme() as CustomUIThemeInterface;
-    const { sqon } = useArrangerData({ callerName: 'AncestryChart' });
+    const { sqon, setSQON } = useArrangerData({ callerName: 'AncestryChart' });
     const [totalCount, setTotalCount] = useState<number>(0);
     const [loading, setLoading] = useState(true);
+
+    const chartFilters = useMemo(() => ({
+        ancestry: chartFilter('data__ancestry', sqon, setSQON),
+    }), [sqon, setSQON]);
+
+    const shuffledPalette = useMemo(() => shuffleArray(theme.colors.chartPalette), []);
 
     useEffect(() => {
         arrangerFetcher({
@@ -121,6 +129,7 @@ const AncestryChart = (): ReactElement => {
                 <ErrorBoundary>
                     <ChartsProvider debugMode={false} loadingDelay={0}>
                         <ChartsThemeProvider
+                            colors={shuffledPalette}
                             components={{
                                 TooltipComp: CustomBarTooltip,
                             }}
@@ -128,6 +137,11 @@ const AncestryChart = (): ReactElement => {
                             <BarChart
                                 fieldName="data__ancestry"
                                 maxBars={5}
+                                handlers={{
+                                    onClick: (config) => {
+                                        return chartFilters.ancestry(config.data.key);
+                                    },
+                                }}
                                 theme={{
                                     axisLeft: {
                                         legend: 'Ancestry',

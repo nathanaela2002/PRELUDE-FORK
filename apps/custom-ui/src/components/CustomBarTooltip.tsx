@@ -12,7 +12,7 @@ interface CustomBarTooltipProps {
 }
 
 const CustomBarTooltip = (props: CustomBarTooltipProps): ReactElement => {
-	const { indexValue, value, label, formattedValue, color } = props;
+	const { indexValue, value, label, formattedValue } = props;
 	
 	// Use label or indexValue, formattedValue or value
 	const displayLabel = label || indexValue || '';

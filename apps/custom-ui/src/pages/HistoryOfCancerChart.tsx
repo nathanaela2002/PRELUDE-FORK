@@ -1,12 +1,22 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import { BarChart, ChartsProvider, ChartsThemeProvider } from '@overture-stack/arranger-charts';
-import { ReactElement } from 'react';
+import { useArrangerData } from '@overture-stack/arranger-components';
+import { ReactElement, useMemo } from 'react';
 import { CustomUIThemeInterface } from '../theme';
 import ErrorBoundary from '../components/ErrorBoundary';
+import { chartFilter } from '../utils/sqonHelpers';
+import { shuffleArray } from '../utils/chartUtils';
 
 const HistoryOfCancerChart = (): ReactElement => {
     const theme = useTheme() as CustomUIThemeInterface;
+    const { sqon, setSQON } = useArrangerData({ callerName: 'HistoryOfCancerChart' });
+
+    const chartFilters = useMemo(() => ({
+        historyOfCancer: chartFilter('data__historyOfCancer', sqon, setSQON),
+    }), [sqon, setSQON]);
+
+    const shuffledPalette = useMemo(() => shuffleArray(theme.colors.chartPalette), []);
 
     return (
         <div
@@ -33,10 +43,15 @@ const HistoryOfCancerChart = (): ReactElement => {
             <div style={{ height: '360px' }}>
                 <ErrorBoundary>
                     <ChartsProvider debugMode={false} loadingDelay={0}>
-                        <ChartsThemeProvider>
+                        <ChartsThemeProvider colors={shuffledPalette}>
                             <BarChart
                                 fieldName="data__historyOfCancer"
                                 maxBars={15}
+                                handlers={{
+                                    onClick: (config) => {
+                                        return chartFilters.historyOfCancer(config.data.key);
+                                    },
+                                }}
                                 theme={{
                                     axisLeft: {
                                         legend: 'History',
