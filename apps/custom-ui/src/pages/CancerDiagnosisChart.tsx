@@ -8,12 +8,12 @@ import ErrorBoundary from '../components/ErrorBoundary';
 import { chartFilter } from '../utils/sqonHelpers';
 import { shuffleArray } from '../utils/chartUtils';
 
-const TransgenderIdentityChart = (): ReactElement => {
+const CancerDiagnosisChart = (): ReactElement => {
     const theme = useTheme() as CustomUIThemeInterface;
-    const { sqon, setSQON } = useArrangerData({ callerName: 'TransgenderIdentityChart' });
+    const { sqon, setSQON } = useArrangerData({ callerName: 'CancerDiagnosisChart' });
 
     const chartFilters = useMemo(() => ({
-        transgenderIdentity: chartFilter('data__transgenderIdentity', sqon, setSQON),
+        selfReportedPrimaryCancerDiagnosis: chartFilter('data__selfReportedPrimaryCancerDiagnosis', sqon, setSQON),
     }), [sqon, setSQON]);
 
     const shuffledPalette = useMemo(() => shuffleArray(theme.colors.chartPalette), []);
@@ -37,7 +37,7 @@ const TransgenderIdentityChart = (): ReactElement => {
 					font-weight: 600;
 				`}
             >
-                Transgender Identity
+                Cancer Diagnosis
             </h3>
 
             <div style={{ height: '180px' }}>
@@ -45,16 +45,16 @@ const TransgenderIdentityChart = (): ReactElement => {
                     <ChartsProvider debugMode={false} loadingDelay={0}>
                         <ChartsThemeProvider colors={shuffledPalette}>
                             <BarChart
-                                fieldName="data__transgenderIdentity"
+                                fieldName="data__selfReportedPrimaryCancerDiagnosis"
                                 maxBars={15}
                                 handlers={{
                                     onClick: (config) => {
-                                        return chartFilters.transgenderIdentity(config.data.key);
+                                        return chartFilters.selfReportedPrimaryCancerDiagnosis(config.data.key);
                                     },
                                 }}
                                 theme={{
                                     axisLeft: {
-                                        legend: 'Identity',
+                                        legend: 'Diagnosis',
                                     },
                                     axisBottom: {
                                         legend: 'Count',
@@ -69,5 +69,5 @@ const TransgenderIdentityChart = (): ReactElement => {
     );
 };
 
-export default TransgenderIdentityChart;
+export default CancerDiagnosisChart;
 

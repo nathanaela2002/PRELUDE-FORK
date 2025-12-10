@@ -28,7 +28,7 @@ import GenderChart from './GenderChart';
 import AncestryChart from './AncestryChart';
 import BirthSexChart from './BirthSexChart';
 import FamilyHistoryChart from './FamilyHistoryChart';
-import TransgenderIdentityChart from './TransgenderIdentityChart';
+import CancerDiagnosisChart from './CancerDiagnosisChart';
 import GeneticsClinicVisitedChart from './GeneticsClinicVisitedChart';
 import MolecularLabVisitedChart from './MolecularLabVisitedChart';
 import HistoryOfCancerChart from './HistoryOfCancerChart';
@@ -94,7 +94,7 @@ const ChartsLayout = (): ReactElement => {
 					<GeneticsClinicVisitedChart />
 				</div>
 				<div>
-					<TransgenderIdentityChart />
+					<CancerDiagnosisChart />
 				</div>
 				<div>
 					<MolecularLabVisitedChart />

@@ -488,7 +488,7 @@ const Facets = (): ReactElement => {
 					css={css`
 						font-size: 1rem;
 						font-weight: 600;
-						margin: 0;
+						margin-left: 0.35rem;
 					`}
 				>
 					Filters
