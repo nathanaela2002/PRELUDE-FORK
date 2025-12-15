@@ -175,7 +175,6 @@ export class ArrangerCommand extends Command {
       const extendedFilePath = path.join(outputDir, "extended.json");
       const tableFilePath = path.join(outputDir, "table.json");
       const facetsFilePath = path.join(outputDir, "facets.json");
-      const barFilePath = path.join(outputDir, "bar.json");
 
       fs.writeFileSync(baseFilePath, JSON.stringify(configs.base, null, 2));
       fs.writeFileSync(
@@ -184,7 +183,6 @@ export class ArrangerCommand extends Command {
       );
       fs.writeFileSync(tableFilePath, JSON.stringify(configs.table, null, 2));
       fs.writeFileSync(facetsFilePath, JSON.stringify(configs.facets, null, 2));
-      fs.writeFileSync(barFilePath, JSON.stringify(configs.charts, null, 2));
 
       Logger.debug`Configuration generation completed`;
       Logger.success`Configuration files saved to:`;
@@ -192,7 +190,6 @@ export class ArrangerCommand extends Command {
       Logger.generic(`    - ${extendedFilePath}`);
       Logger.generic(`    - ${tableFilePath}`);
       Logger.generic(`    - ${facetsFilePath}`);
-      Logger.generic(`    - ${barFilePath}`);
 
       return configs;
     } catch (error) {
