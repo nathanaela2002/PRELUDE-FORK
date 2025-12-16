@@ -99,7 +99,104 @@ The documentation found on the portal and within the `/docs` folder is organized
 
 ## Development
 
-### Local Development Environment
+### Custom-UI Local Development Setup
+
+This section covers setting up the custom-ui application for local development, including all required backend services.
+
+#### Prerequisites
+
+- Docker Desktop 4.39.0+ running
+- Node.js 20.18.1+ and npm 9+
+- All services from Phase 1 must be running (Elasticsearch, Arranger, etc.)
+
+#### Step 1: Start Backend Services
+
+Start the required backend services using Docker Compose:
+
+```bash
+make phase1
+```
+
+This will start:
+- Elasticsearch (port 9200)
+- Arranger servers for datatables (ports 5050-5054)
+- Conductor (port 9204)
+
+Wait for all services to be healthy before proceeding.
+
+#### Step 2: Install Conductor CLI
+
+The Conductor CLI is required for uploading data and managing configurations:
+
+```bash
+cd ./apps/composer
+npm install
+npm run build
+npm install -g .
+```
+
+This installs the `conductor` command globally, allowing you to use it from any directory.
+
+#### Step 3: Upload Sample Data
+
+Upload your CSV data to Elasticsearch:
+
+```bash
+conductor upload -f ./data/participant.csv -i datatable4-index
+```
+
+This command:
+- Validates the CSV file
+- Transforms it to match the Elasticsearch mapping
+- Loads it into the `datatable4-index` index
+
+#### Step 4: Install Custom-UI Dependencies
+
+Navigate to the custom-ui directory and install dependencies:
+
+```bash
+cd ./apps/custom-ui
+npm install
+```
+
+#### Step 5: Run Custom-UI Development Server
+
+Start the custom-ui development server:
+
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173` (or the port shown in the terminal).
+
+#### Creating New Elasticsearch and Arranger Configurations
+
+CAUTION: The Elasticsearch mappings and Arranger configurations for datatable4 are already created and configured. Only follow these steps if you need to create configurations for a new datatable.
+
+To generate new Elasticsearch mappings from a CSV file:
+
+```bash
+composer -p ElasticsearchMapping -f ./data/participant.csv -i datatable4 -o ./configs/elasticsearchConfigs/datatable4-mapping.json
+```
+
+To generate new Arranger configurations from an Elasticsearch mapping:
+
+```bash
+composer -p ArrangerConfigs -f ./configs/elasticsearchConfigs/datatable4-mapping.json -o ./configs/arrangerConfigs/datatable4/
+```
+
+These commands will:
+1. Analyze your CSV data structure
+2. Generate appropriate Elasticsearch field mappings
+3. Create Arranger UI configuration files (base.json, extended.json, facets.json, table.json)
+
+After generating new configurations, restart the arranger services to load the new configs:
+
+```bash
+docker-compose restart arranger-datatable4
+```
+
+### Stage Portal Local Development
 
 To modify the documentation portal itself:
 
