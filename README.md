@@ -8,6 +8,8 @@ This repository is a fork and extension of the open-source [Prelude](https://git
 
 **This Custom-UI fork** extends Prelude by adding a dedicated React-based data exploration interface (`apps/custom-ui`) that integrates with [Arranger Charts](https://github.com/overture-stack/arranger/tree/release-charts/modules) for interactive data visualization. While the original Prelude focuses on the Stage portal for documentation and data exploration, this fork provides an alternative custom user interface specifically designed for researcher workflows with enhanced chart integration and filtering capabilities.
 
+<img width="3024" height="1712" alt="image" src="https://github.com/user-attachments/assets/6ffab42c-dcd0-4067-a059-4c8a777bdcb1" />
+
 ## Getting Started
 
 You will need:
