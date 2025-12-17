@@ -14,9 +14,7 @@
       {
         "active": true,
         "fieldName": "data__gender",
-        "show": true,
-        "type": "keyword",
-        "aggregation": "terms"
+        "show": true
       },
       {
         "active": true,
@@ -31,9 +29,7 @@
       {
         "active": true,
         "fieldName": "data__ancestry",
-        "show": true,
-        "type": "keyword",
-        "aggregation": "terms"
+        "show": true
       },
       {
         "active": true,
