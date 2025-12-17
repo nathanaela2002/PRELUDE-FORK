@@ -177,6 +177,7 @@ make reset
 
 ## Custom-UI chart implementation architecture
 At a high level, the architecture consists of three main parts: Custom‑UI (a React + Vite frontend used by researchers), the Arranger API (a GraphQL gateway that translates queries into Elasticsearch requests), and Elasticsearch (the underlying data store that executes searches and aggregations).
+
 <img width="217" height="616" alt="image" src="https://github.com/user-attachments/assets/2a646ca7-a8e6-4a10-93b5-0e5cf2c2f6ea" />
 
 #### Detailed Flow 
