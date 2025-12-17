@@ -140,7 +140,7 @@ npm install
 
 #### Step 5: Run Custom-UI Development Server
 
-Start the custom-ui development server:
+Start the custom-ui development server from the apps/custom-ui directory:
 
 ```bash
 npm run dev
