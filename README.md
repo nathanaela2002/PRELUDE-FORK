@@ -1,5 +1,13 @@
 # Prelude Custom-UI Researcher Data Exploration Portal
 
+## About This Project
+
+This repository is a fork and extension of the open-source [Prelude](https://github.com/overture-stack/prelude/tree/main) project, which is part of the [Overture Stack](https://github.com/overture-stack) ecosystem. 
+
+**Prelude** is a toolkit for planning and developing Overture data platform implementations, providing incremental phases for building and validating platform requirements. The original Prelude includes tools like Composer (for configuration generation), Conductor (for data management), and Stage (a Next.js frontend portal).
+
+**This Custom-UI fork** extends Prelude by adding a dedicated React-based data exploration interface (`apps/custom-ui`) that integrates with Arranger Charts for interactive data visualization. While the original Prelude focuses on the Stage portal for documentation and data exploration, this fork provides an alternative custom user interface specifically designed for researcher workflows with enhanced chart integration and filtering capabilities.
+
 ## Getting Started
 
 You will need:
