@@ -6,7 +6,7 @@ This repository is a fork and extension of the open-source [Prelude](https://git
 
 **Prelude** is a toolkit for planning and developing Overture data platform implementations, providing incremental phases for building and validating platform requirements. The original Prelude includes tools like Composer (for configuration generation), Conductor (for data management), and Stage (a Next.js frontend portal).
 
-**This Custom-UI fork** extends Prelude by adding a dedicated React-based data exploration interface (`apps/custom-ui`) that integrates with Arranger Charts for interactive data visualization. While the original Prelude focuses on the Stage portal for documentation and data exploration, this fork provides an alternative custom user interface specifically designed for researcher workflows with enhanced chart integration and filtering capabilities.
+**This Custom-UI fork** extends Prelude by adding a dedicated React-based data exploration interface (`apps/custom-ui`) that integrates with [Arranger Charts](https://github.com/overture-stack/arranger/tree/release-charts/modules) for interactive data visualization. While the original Prelude focuses on the Stage portal for documentation and data exploration, this fork provides an alternative custom user interface specifically designed for researcher workflows with enhanced chart integration and filtering capabilities.
 
 ## Getting Started
 
@@ -175,7 +175,7 @@ After generating new configurations, restart the arranger services to load the n
 make reset
 ```
 
-## Custom-UI chart implementation architecture
+## Custom-UI Charts Implementation Architecture
 At a high level, the architecture consists of three main parts: Custom‑UI (a React + Vite frontend used by researchers), the Arranger API (a GraphQL gateway that translates queries into Elasticsearch requests), and Elasticsearch (the underlying data store that executes searches and aggregations).
 
 <img width="217" height="616" alt="image" src="https://github.com/user-attachments/assets/2a646ca7-a8e6-4a10-93b5-0e5cf2c2f6ea" />
