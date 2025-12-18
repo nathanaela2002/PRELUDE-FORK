@@ -242,10 +242,7 @@ services:
   arranger-datatable4:
 
     profiles: ["phase1", "phase2", "phase3", "stageDev", "default"]
-    build:
-      context: ../arranger
-      dockerfile: ./docker/Dockerfile.local
-      target: server
+    image: ghcr.io/overture-stack/arranger-server:ce3be7ff
     container_name: arranger-datatable4
     platform: linux/amd64
     depends_on:
@@ -270,10 +267,7 @@ services:
 
   arranger-datatable5:
     profiles: ["phase1", "phase2", "phase3", "stageDev", "default"]
-    build:
-      context: ../arranger
-      dockerfile: ./docker/Dockerfile.local
-      target: server
+    image: ghcr.io/overture-stack/arranger-server:ce3be7ff
     container_name: arranger-datatable5
     platform: linux/amd64
     depends_on:
